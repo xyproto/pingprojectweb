@@ -14,7 +14,7 @@
   <p style="margin: 3em; font-family: courier;">
 <?php
   $hostname = trim(shell_exec("hostname"));
-  echo "git clone ssh://\$USER@".$hostname."//srv/git/project.git"."</br>";
+  echo "git clone ssh://\$USER@".$hostname."//srv/git/project.git dirname"."</br>";
 ?>
   </p>
   </br></br></br>
