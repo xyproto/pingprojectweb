@@ -27,7 +27,7 @@ function rgb2html($r, $g=-1, $b=-1)
 }
 
 
-  $files = explode("\n", shell_exec("cd /srv/git; ls -td *.git"));
+  $files = explode("\n", shell_exec("cd /srv/git; ls -rtd *.git"));
   $yellow = 0;
   $color = "";
   foreach ($files as $f) {

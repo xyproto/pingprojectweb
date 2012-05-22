@@ -21,6 +21,19 @@
   <h2>Files</h2>
   <p style="margin-left: 3em; font-family: courier;">
 <?php
+
+# Thank you 
+# http://php.net/manual/en/function.utf8-encode.php
+function fixEncoding($in_str)
+{
+  $cur_encoding = mb_detect_encoding($in_str) ;
+  if($cur_encoding == "UTF-8" && mb_check_encoding($in_str,"UTF-8"))
+    return $in_str;
+  else
+    return utf8_encode($in_str);
+} // fixEncoding 
+
+
   # cleanup if there's too little space on /tmp
   $line = explode("\n", shell_exec("df /tmp"))[1];
   $fields = explode(" ", $line);
@@ -34,6 +47,7 @@
   #echo "path: ".$p."</br>";
   shell_exec("git clone ".$p." /tmp/".$gitname);
   $files = explode("\n", shell_exec("ls -t /tmp/".$gitname."/".$indirname));
+  sort($files);
   foreach ($files as $f) {
     if (empty($f)) {
       continue;
@@ -45,7 +59,9 @@
       $filename = str_replace("/./", "/", $filename);
       echo "&lt;FILE&gt;&nbsp;<a href=\"/viewfile.php?gitname=".$gitname."&filename=".$f."\">$f</a>";
       echo "</br>";
-      $fields = explode(" ", shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an %ci%n\"".$filename), -1);
+      $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an %ci%n\"".$filename);
+
+      $fields = explode(" ", fixEncoding($output), -1);
       $info = implode(" ", $fields);
       if (empty($info)) {
         echo "no log info"."</br>";
