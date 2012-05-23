@@ -8,6 +8,9 @@
   if (empty($indirname)) {
     $indirname = ".";
   }
+  // Prevent .. in "indirname"
+  $indirname = str_replace("..", "OST", $indirname);
+
   $filename = trim(escapeshellcmd(strip_tags($_GET["filename"])));
   if (empty($filename)) {
     die("error: missing filename");
@@ -15,27 +18,18 @@
   $filename_full = str_replace("/./", "/", "/tmp/".$gitname."/".$indirname."/".$filename);
 ?>
   <h1>Viewing File: <font style="color: orange;"><?php echo $filename_full; ?></font></h1>
-  <h2>Files</h2>
-  <p style="margin-left: 3em; font-family: courier;">
+  <p style="margin-left: 2em; font-family: courier;">
 <?php
 
 # thanks stackoverflow
-function startsWith($haystack, $needle)
+function endsWith($haystack,$needle,$case=true)
 {
-  $length = strlen($needle);
-  return (substr($haystack, 0, $length) === $needle);
-}
+  $expectedPosition = strlen($haystack) - strlen($needle);
 
-# thanks stackoverflow
-function endsWith($haystack, $needle)
-{
-  $length = strlen($needle);
-  if ($length == 0) {
-      return true;
-  }
+  if($case)
+      return strrpos($haystack, $needle, 0) === $expectedPosition;
 
-  $start  = $length * -1; //negative
-  return (substr($haystack, $start) === $needle);
+  return strripos($haystack, $needle, 0) === $expectedPosition;
 }
 
   # cleanup if there's too little space on /tmp
@@ -48,17 +42,20 @@ function endsWith($haystack, $needle)
   }
   # check out the project and list the files
   $p = "/srv/git/".$gitname;
-  #echo "path: ".$p."</br>";
   shell_exec("git clone ".$p." /tmp/".$gitname);
-  #echo $filename_full."</br>";
-  if endsWith($filename_full, ".png") {
-    echo passthru("cat ".$filename_full);
+  if (endsWith($filename_full, ".png")) {
+    # TODO
+    echo "PNG viewing is to be implemented.</br>";
+    echo "<img src=\"/viewimage.php?gitname=".$gitname."&indir=".$indirname."&filename=".$filename."\"></br>";
   } else {
-    echo trim(escapeshellcmd(strip_tags(shell_exec("cat ".$filename_full))))."</br>";
+    #echo "Tag-stripped version of the file:</br>";
+    echo "<p style=\"padding:1em; margin-left:3em; margin-right:5em; opacity:0.7; background:white; color:black;\">";
+    echo trim(strip_tags(shell_exec("cat ".$filename_full)))."</br>";
+    echo "</p>";
   }
   echo "</br>";
 ?>
   </p>
   <hr color="gray">
-  <a href="/view.php?gitname=<?php echo $gitname; ?>">Go back</a>
+  <a style="color:white;" href="/view.php?gitname=<?php echo $gitname; ?>">Go back</a>
 <?php include("footer.inc"); ?>

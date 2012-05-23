@@ -3,7 +3,7 @@
   $projectname = escapeshellcmd(strip_tags($_POST["project"]));
 ?>
   <h1>PING <font style="color: orange;">projects:</font></h1>
-  <p style="margin: 3em; font-family: courier; font-size: 1.5em;">
+  <p style="margin-left: 3em; font-family: courier; font-size: 1.5em;">
 <?php
 
 # Thanks

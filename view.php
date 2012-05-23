@@ -8,6 +8,8 @@
   if (empty($indirname)) {
     $indirname = ".";
   }
+  // Prevent .. in "indirname"
+  $indirname = str_replace("..", "OST", $indirname);
 ?>
   <h1>Viewing project: <font style="color: orange;"><?php echo $gitname; ?></font></h1>
   <h2>To checkout</h2>
@@ -74,5 +76,5 @@ function fixEncoding($in_str)
 ?>
   </p>
   <hr color="gray">
-  <a href="/">Go back</a>
+  <a style="color:white;" href="/">Go back</a>
 <?php include("footer.inc"); ?>
