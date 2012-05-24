@@ -49,11 +49,14 @@ function endsWith($haystack,$needle,$case=true)
     echo "PNG viewing is to be implemented.</br>";
     echo "<img src=\"/viewimage.php?gitname=".$gitname."&indir=".$indirname."&filename=".$filename."\"></br>";
   } else {
-    echo "<p style=\"padding:1em; margin-left:3em; margin-right:5em; opacity:0.7; background:white; color:black;\">";
+    echo "<div style=\"padding:1em; margin-left:3em; margin-right:5em; opacity:0.9; background:white; color:black;\">";
     echo "<pre class=\"prettyprint\">";
     #echo trim(strip_tags(shell_exec("cat ".$filename_full)))."</br>";
-    echo shell_exec("cat ".$filename_full);
-    echo "</pre></p>";
+    $ff = fopen($filename_full, "r");
+    echo fread($ff, filesize($filename_full));
+    fclose($ff);
+    echo "</pre>";
+    echo "</div>";
   }
   echo "</br>";
 ?>
