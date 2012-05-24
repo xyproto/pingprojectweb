@@ -1,4 +1,4 @@
-<?php include("header.inc"); ?>
+<?php include("header_pretty.inc"); ?>
 <?php
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {
@@ -49,12 +49,11 @@ function endsWith($haystack,$needle,$case=true)
     echo "PNG viewing is to be implemented.</br>";
     echo "<img src=\"/viewimage.php?gitname=".$gitname."&indir=".$indirname."&filename=".$filename."\"></br>";
   } else {
-    echo "Syntax-highlighted viewing is to be implemented</br>";
-    #echo "Tag-stripped version of the file:</br>";
     echo "<p style=\"padding:1em; margin-left:3em; margin-right:5em; opacity:0.7; background:white; color:black;\">";
+    echo "<pre class=\"prettyprint\">";
     #echo trim(strip_tags(shell_exec("cat ".$filename_full)))."</br>";
-    echo strip_tags(str_replace("\n", "</br>", trim(shell_exec("cat ".$filename_full))."</br>"));
-    echo "</p>";
+    echo shell_exec("cat ".$filename_full);
+    echo "</pre></p>";
   }
   echo "</br>";
 ?>
