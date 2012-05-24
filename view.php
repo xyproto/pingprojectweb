@@ -56,10 +56,10 @@ function fixEncoding($in_str)
     }
     $filename = "/tmp/".$gitname."/".$indirname."/".$f;
     if (is_dir($filename)) {
-      echo "&lt;DIR&gt;&nbsp;<a href=\"/view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\">$f</a></br>";
+      echo "<img src=\"img/dir.png\" style=\"vertical-align:middle;\">&nbsp;<a style=\"color:#aaaaff;\" href=\"/view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\">$f</a></br>";
     } else {
       $filename = str_replace("/./", "/", $filename);
-      echo "&lt;FILE&gt;&nbsp;<a href=\"/viewfile.php?gitname=".$gitname."&filename=".$f."\">$f</a>";
+      echo "<img src=\"img/file.png\" style=\"vertical-align:middle;\">&nbsp;<a style=\"color:#aaffaa\" href=\"/viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\">$f</a>";
       echo "</br>";
       $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an %ci%n\"".$filename);
 
@@ -68,7 +68,7 @@ function fixEncoding($in_str)
       if (empty($info)) {
         echo "no log info"."</br>";
       } else {
-        echo $info."</br>";
+        echo "&nbsp;&nbsp;&nbsp;".$info."</br>";
       }
     }
     echo "</br>";
