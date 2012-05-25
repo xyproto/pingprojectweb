@@ -4,6 +4,19 @@
   $projectname = escapeshellcmd(strip_tags($_POST["project"]));
 ?>
   <h1>PING <font style="color: orange;">projects:</font></h1>
+  
+<!--
+<div class="ContentFlow">
+  <div class="loadIndicator"><div class="indicator"></div></div>
+  <div class="flow">
+    <img class="item" src="img/ximvy.png" title="Your_Image_Title"/>
+    <img class="item" src="img/linux.png" title="Your_Image_Title"/>
+  </div>
+  <div class="globalCaption"></div>
+  <div class="scrollbar"><div class="slider"><div class="position"></div></div></div>
+</div>
+-->
+
   <p style="margin-left: 3em; font-family: tahoma, arial, sans-serif; font-size: 1.5em;">
 <?php
 

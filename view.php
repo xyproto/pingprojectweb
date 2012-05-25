@@ -12,7 +12,7 @@
   // Prevent .. in "indirname"
   $indirname = str_replace("..", "OST", $indirname);
 ?>
-  <h1 style="font-family: 'Russo One';">Viewing project: <font style="color: orange;"><?php echo $gitname; ?></font></h1>
+  <h1>Viewing project: <font style="color: orange;"><?php echo $gitname; ?></font></h1>
   <h2>To checkout</h2>
   <p style="margin-left: 3em; font-family: courier;">
 <?php

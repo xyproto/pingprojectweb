@@ -19,7 +19,7 @@
   $filename_full = str_replace("/./", "/", "/tmp/".$gitname."/".$indirname."/".$filename);
   $viewfilename_full = str_replace("/./", "/", $gitname."/".$indirname."/".$filename);
 ?>
-  <h1 style="font-family: 'Russo One';">Viewing File: <font style="color: orange;"><?php echo $viewfilename_full; ?></font></h1>
+  <h1>Viewing File: <font style="color: orange;"><?php echo $viewfilename_full; ?></font></h1>
   <p style="margin-left: 2em; font-family: courier;">
 <?php
 
