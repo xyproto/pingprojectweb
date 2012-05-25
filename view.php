@@ -88,20 +88,23 @@ function scandirSorted2($path) {
       $filename = str_replace("/./", "/", $filename);
       echo "<a style=\"text-decoration: none; color:#aaffaa\" href=\"/viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\"><img src=\"img/buuf_file.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right:8px;\">$f</a>";
       echo "</br>";
-      $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an %ci%n\"".$filename);
+      $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an, %ci%n\"".$filename);
 
       $fields = explode(" ", fixEncoding($output), -1);
       $info = implode(" ", $fields);
+      echo "<font style=\"color: gray; margin-left: 4em;\">";
       if (empty($info)) {
         echo "no log info"."</br>";
       } else {
-        echo "<font style=\"color: gray; margin-left: 4em;\">".$info."</font></br>";
+        echo $info;
       }
+      echo ", ".filesize($filename)." bytes";
+      echo "</font></br>";
     }
     echo "</br>";
   }
 ?>
   </p>
   <hr color="#303030">
-  <a style="text-decoration:none; color:#d0d0d0;" href="/">Go back</a>
+  <a style="text-decoration:none; color:#d0d0d0;" href="/"><img src="img/buuf_back.png" style="height:32px; width: auto; vertical-align:middle; margin-right:8px;"><font style="color: #dddda0; font-family: courier; font-size: 1em;">Go back</font></a>
 <?php include("footer.inc"); ?>

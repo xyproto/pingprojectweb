@@ -63,5 +63,5 @@ function endsWith($haystack,$needle,$case=true)
 ?>
   </p>
   <hr color="#303030">
-  <a style="text-decoration:none; color:#d0d0d0;" href="/view.php?gitname=<?php echo $gitname; ?>">Go back</a>
+  <a style="text-decoration:none; color:#d0d0d0;" href="/view.php?gitname=<?php echo $gitname; ?>"><img src="img/buuf_back.png" style="height:32px; width: auto; vertical-align:middle; margin-right:8px;"><font style="color: #dddda0; font-family: courier; font-size: 1em;">Go back</font></a>
 <?php include("footer.inc"); ?>

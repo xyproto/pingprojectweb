@@ -67,6 +67,6 @@ function rgb2html($r, $g=-1, $b=-1)
   </p>
   </br></br></br>
   <form>
-    <input type="button" value="Create a new PING project" onclick="location.href='create.php'">
+    <input type="button" style="width: 200px;" value="Create a new PING project" onclick="location.href='create.php'">
   </form>
 <?php include("footer.inc"); ?>
