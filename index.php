@@ -60,14 +60,6 @@ function rgb2html($r, $g=-1, $b=-1)
 </div>
   </p>
   <hr color="#303030">
-  <h2>Checkout syntax</h2>
-  <p style="margin: 3em; font-family: courier;">
-<?php
-  $hostname = trim(shell_exec("hostname"));
-  echo "git clone ssh://\$USER@".$hostname."//srv/git/project.git dirname"."</br>";
-?>
-  </p>
-  <hr color="#303030">
   <form>
     <input type="button" style="width: 200px;" value="Create a new PING project" onclick="location.href='create.php'">
   </form>
