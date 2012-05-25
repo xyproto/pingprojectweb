@@ -35,19 +35,23 @@ function rgb2html($r, $g=-1, $b=-1)
 
 
   $files = explode("\n", shell_exec("cd /srv/git; ls -rtd *.git"));
-  $green = 0;
-  $color = "";
+  #$green = 0;
+  #$color = "";
   foreach ($files as $f) {
     if (empty($f)) {
       continue;
     }
-    $color = rgb2html(255, (255-$green), 0);
+    #$color = rgb2html(255, (255-$green), 0);
     #echo "<a style=\"text-decoration:none; color:".$color."\" href=\"view.php?gitname=".$f."\">".$f."</a></br>";
-    echo "<img class=\"item\" href=\"view.php?gitname=".$f."\" src=\"logo.php?text=".$f."\" title=\"".$f."\"/>";
-    $green += (255 / sizeof($files));
-    if ($green >= 255) {
-      $green = 255;
-    }
+    #$last_modified = date("Y-m.d", filectime("/srv/git/".$f."/config"));
+    #$stat = stat("/srv/git/".$f."/config");
+    #last_modified = $stat['mtime'];
+    $last_modified = shell_exec("stat /srv/git/".$f." --format=%y | cut -d\" \" -f1");
+    echo "<img class=\"item\" href=\"view.php?gitname=".$f."\" src=\"logo.php?text=".$f."&text2=".$last_modified."\" title=\"".$f."\"/>";
+    #$green += (255 / sizeof($files));
+    #if ($green >= 255) {
+    #  $green = 255;
+    #}
   }
 ?>
   </div>
@@ -63,7 +67,7 @@ function rgb2html($r, $g=-1, $b=-1)
   echo "git clone ssh://\$USER@".$hostname."//srv/git/project.git dirname"."</br>";
 ?>
   </p>
-  </br></br></br>
+  <hr color="#303030">
   <form>
     <input type="button" style="width: 200px;" value="Create a new PING project" onclick="location.href='create.php'">
   </form>
