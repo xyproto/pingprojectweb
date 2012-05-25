@@ -1,4 +1,5 @@
 <?php include("header.inc"); ?>
+<?php include("body.inc"); ?>
 <?php
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {
@@ -11,7 +12,7 @@
   // Prevent .. in "indirname"
   $indirname = str_replace("..", "OST", $indirname);
 ?>
-  <h1>Viewing project: <font style="color: orange;"><?php echo $gitname; ?></font></h1>
+  <h1 style="font-family: 'Russo One';">Viewing project: <font style="color: orange;"><?php echo $gitname; ?></font></h1>
   <h2>To checkout</h2>
   <p style="margin-left: 3em; font-family: courier;">
 <?php
@@ -21,7 +22,7 @@
 ?>
   </p>
   <h2>Files</h2>
-  <p style="margin-left: 3em; font-family: courier;">
+  <p style="margin-left: 3em; font-family: courier; font-size: 1.2em;">
 <?php
 
 # Thank you 
@@ -35,6 +36,33 @@ function fixEncoding($in_str)
     return utf8_encode($in_str);
 } // fixEncoding 
 
+# Thank you
+# http://camendesign.com/code/php_directory_sorting
+function scandirSorted2($path) {
+  //warning: `is_dir` will need you to change to the parent directory of what you are testing
+  //see <uk3.php.net/manual/en/function.is-dir.php#70005> for details
+  chdir ($path);
+  
+  //get a directory listing
+  $dir = array_diff (scandir ('.'),
+    //folders / files to ignore
+    array ('.', '..', '.DS_Store', 'Thumbs.db', '.git', '.gitignore')
+  );
+  
+  //sort folders first, then by type, then alphabetically
+  usort ($dir, create_function ('$a,$b', '
+  	return	is_dir ($a)
+  		? (is_dir ($b) ? strnatcasecmp ($a, $b) : -1)
+  		: (is_dir ($b) ? 1 : (
+  			strcasecmp (pathinfo ($a, PATHINFO_EXTENSION), pathinfo ($b, PATHINFO_EXTENSION)) == 0
+  			? strnatcasecmp ($a, $b)
+  			: strcasecmp (pathinfo ($a, PATHINFO_EXTENSION), pathinfo ($b, PATHINFO_EXTENSION))
+  		))
+  	;
+  '));
+
+  return $dir;
+}
 
   # cleanup if there's too little space on /tmp
   $line = explode("\n", shell_exec("df /tmp"))[1];
@@ -48,18 +76,17 @@ function fixEncoding($in_str)
   $p = "/srv/git/".$gitname;
   #echo "path: ".$p."</br>";
   shell_exec("git clone ".$p." /tmp/".$gitname);
-  $files = explode("\n", shell_exec("ls -t /tmp/".$gitname."/".$indirname));
-  sort($files);
+  $files = scandirSorted2("/tmp/".$gitname."/".$indirname);
   foreach ($files as $f) {
     if (empty($f)) {
       continue;
     }
     $filename = "/tmp/".$gitname."/".$indirname."/".$f;
     if (is_dir($filename)) {
-      echo "<img src=\"img/dir.png\" style=\"vertical-align:middle;\">&nbsp;<a style=\"color:#aaaaff;\" href=\"/view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\">$f</a></br>";
+      echo "<a style=\"text-decoration: none; color:#aaaaff;\" href=\"/view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\"><img src=\"img/buuf_dir.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right: 8px;\">$f</a></br>";
     } else {
       $filename = str_replace("/./", "/", $filename);
-      echo "<img src=\"img/file.png\" style=\"vertical-align:middle;\">&nbsp;<a style=\"color:#aaffaa\" href=\"/viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\">$f</a>";
+      echo "<a style=\"text-decoration: none; color:#aaffaa\" href=\"/viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\"><img src=\"img/buuf_file.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right:8px;\">$f</a>";
       echo "</br>";
       $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an %ci%n\"".$filename);
 
@@ -68,13 +95,13 @@ function fixEncoding($in_str)
       if (empty($info)) {
         echo "no log info"."</br>";
       } else {
-        echo "&nbsp;&nbsp;&nbsp;".$info."</br>";
+        echo "<font style=\"color: gray; margin-left: 4em;\">".$info."</font></br>";
       }
     }
     echo "</br>";
   }
 ?>
   </p>
-  <hr color="gray">
-  <a style="color:white;" href="/">Go back</a>
+  <hr color="#303030">
+  <a style="text-decoration:none; color:#d0d0d0;" href="/">Go back</a>
 <?php include("footer.inc"); ?>

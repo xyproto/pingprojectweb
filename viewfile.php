@@ -1,4 +1,5 @@
-<?php include("header_pretty.inc"); ?>
+<?php include("header.inc"); ?>
+<?php include("prettybody.inc"); ?>
 <?php
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {
@@ -18,7 +19,7 @@
   $filename_full = str_replace("/./", "/", "/tmp/".$gitname."/".$indirname."/".$filename);
   $viewfilename_full = str_replace("/./", "/", $gitname."/".$indirname."/".$filename);
 ?>
-  <h1>Viewing File: <font style="color: orange;"><?php echo $viewfilename_full; ?></font></h1>
+  <h1 style="font-family: 'Russo One';">Viewing File: <font style="color: orange;"><?php echo $viewfilename_full; ?></font></h1>
   <p style="margin-left: 2em; font-family: courier;">
 <?php
 
@@ -49,11 +50,11 @@ function endsWith($haystack,$needle,$case=true)
     echo "PNG viewing is to be implemented.</br>";
     echo "<img src=\"/viewimage.php?gitname=".$gitname."&indir=".$indirname."&filename=".$filename."\"></br>";
   } else {
-    echo "<div style=\"padding:1em; margin-left:3em; margin-right:5em; opacity:0.9; background:white; color:black;\">";
+    echo "<div style=\"border-radius: 15px; padding:1em; margin-left:3em; margin-right:5em; opacity:1.0; background:black;\">";
     echo "<pre class=\"prettyprint\">";
     #echo trim(strip_tags(shell_exec("cat ".$filename_full)))."</br>";
     $ff = fopen($filename_full, "r");
-    echo fread($ff, filesize($filename_full));
+    print_r(fread($ff, filesize($filename_full)));
     fclose($ff);
     echo "</pre>";
     echo "</div>";
@@ -61,6 +62,6 @@ function endsWith($haystack,$needle,$case=true)
   echo "</br>";
 ?>
   </p>
-  <hr color="gray">
-  <a style="color:white;" href="/view.php?gitname=<?php echo $gitname; ?>">Go back</a>
+  <hr color="#303030">
+  <a style="text-decoration:none; color:#d0d0d0;" href="/view.php?gitname=<?php echo $gitname; ?>">Go back</a>
 <?php include("footer.inc"); ?>

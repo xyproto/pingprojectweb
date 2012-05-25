@@ -1,4 +1,5 @@
 <?php include("header.inc"); ?>
+<?php include("body.inc"); ?>
 <?php
   $projectname = trim(escapeshellcmd(strip_tags($_POST["project"])));
   if (empty($projectname)) {

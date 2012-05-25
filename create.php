@@ -1,4 +1,5 @@
 <?php include("header.inc"); ?>
+<?php include("body.inc"); ?>
 <h1 style="color: orange;">Create new <font style="color: white;">PING</font> project</h1>
 <form method="post" action="new.php" style="margin: 3em;">
  <label>Project name:</label>
