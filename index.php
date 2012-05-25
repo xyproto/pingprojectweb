@@ -5,19 +5,12 @@
 ?>
   <h1>PING <font style="color: orange;">projects:</font></h1>
   
-<!--
+  <p style="margin-left: 3em; font-family: tahoma, arial, sans-serif; font-size: 1.5em;">
+
 <div class="ContentFlow">
   <div class="loadIndicator"><div class="indicator"></div></div>
   <div class="flow">
-    <img class="item" src="img/ximvy.png" title="Your_Image_Title"/>
-    <img class="item" src="img/linux.png" title="Your_Image_Title"/>
-  </div>
-  <div class="globalCaption"></div>
-  <div class="scrollbar"><div class="slider"><div class="position"></div></div></div>
-</div>
--->
 
-  <p style="margin-left: 3em; font-family: tahoma, arial, sans-serif; font-size: 1.5em;">
 <?php
 
 # Thanks
@@ -42,20 +35,25 @@ function rgb2html($r, $g=-1, $b=-1)
 
 
   $files = explode("\n", shell_exec("cd /srv/git; ls -rtd *.git"));
-  $yellow = 0;
+  $green = 0;
   $color = "";
   foreach ($files as $f) {
     if (empty($f)) {
       continue;
     }
-    $color = rgb2html(255, (255-$yellow), 0);
-    echo "<a style=\"text-decoration:none; color:".$color."\" href=\"view.php?gitname=".$f."\">".$f."</a></br>";
-    $yellow += (255 / sizeof($files));
-    if ($yellow >= 255) {
-      $yellow = 255;
+    $color = rgb2html(255, (255-$green), 0);
+    #echo "<a style=\"text-decoration:none; color:".$color."\" href=\"view.php?gitname=".$f."\">".$f."</a></br>";
+    echo "<img class=\"item\" href=\"view.php?gitname=".$f."\" src=\"logo.php?text=".$f."\" title=\"".$f."\"/>";
+    $green += (255 / sizeof($files));
+    if ($green >= 255) {
+      $green = 255;
     }
   }
 ?>
+  </div>
+  <div class="globalCaption"></div>
+  <div class="scrollbar"><div class="slider"><div class="position"></div></div></div>
+</div>
   </p>
   <hr color="#303030">
   <h2>Checkout syntax</h2>
