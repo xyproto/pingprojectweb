@@ -45,16 +45,18 @@ function endsWith($haystack,$needle,$case=true)
   # check out the project and list the files
   $p = "/srv/git/".$gitname;
   shell_exec("git clone ".$p." /tmp/".$gitname);
-  if (endsWith($filename_full, ".png")) {
+  if (endsWith($filename_full, ".png") || endsWith($filename_full, ".gif") ||endsWith($filename_full, ".jpg")) {
     # TODO
-    echo "PNG viewing is to be implemented.</br>";
-    echo "<img src=\"/viewimage.php?gitname=".$gitname."&indir=".$indirname."&filename=".$filename."\"></br>";
+    echo "<img src=\"/viewimage.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$filename."\"></br>";
   } else {
     echo "<div style=\"border-radius: 15px; padding:1em; margin-left:3em; margin-right:5em; opacity:1.0; background:black;\">";
     echo "<pre class=\"prettyprint\">";
     #echo trim(strip_tags(shell_exec("cat ".$filename_full)))."</br>";
     $ff = fopen($filename_full, "r");
-    print_r(fread($ff, filesize($filename_full)));
+    $output = fread($ff, filesize($filename_full));
+    $output = str_replace("<", "&lt;", $output);
+    $output = str_replace(">", "&gt;", $output);
+    echo $output;
     fclose($ff);
     echo "</pre>";
     echo "</div>";
