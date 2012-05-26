@@ -4,6 +4,19 @@
   $projectname = escapeshellcmd(strip_tags($_POST["project"]));
 ?>
   <h1>PING <font style="color: orange;">projects:</font></h1>
+
+  <form>
+    <label>Search:</label>
+    <input type="text" style="position:relative; text-align: right; width: 200px;" value="" onclick="location.href='search.php'">
+    <input type="button" style="width: 50px;" value="Go" onclick="location.href='search.php'">
+  </form>
+
+  <hr color="#303030">
+  <form>
+    <input type="button" style="width: 200px;" value="List all PING projects" onclick="location.href='list.php'">
+    <input type="button" style="width: 200px;" value="Create a new PING project" onclick="location.href='create.php'">
+  </form>
+  <hr color="#303030">
   
   <p style="margin-left: 3em; font-family: tahoma, arial, sans-serif; font-size: 1.5em;">
 
@@ -59,8 +72,4 @@ function rgb2html($r, $g=-1, $b=-1)
   <div class="scrollbar"><div class="slider"><div class="position"></div></div></div>
 </div>
   </p>
-  <hr color="#303030">
-  <form>
-    <input type="button" style="width: 200px;" value="Create a new PING project" onclick="location.href='create.php'">
-  </form>
 <?php include("footer.inc"); ?>
