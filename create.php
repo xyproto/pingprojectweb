@@ -14,4 +14,7 @@ include("logosearchmenu.inc");
      <button type=submit>Create</button>
     </form>
   </div>
-<?php include("footer.inc"); ?>
+<?php
+include 'backlink.inc';
+include 'footer.inc';
+?>

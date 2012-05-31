@@ -7,9 +7,10 @@ include("logosearchmenu.inc");
     document.getElementById("list").setAttribute("class", "current");
   </script>
   <div id="content">
-    Project list as a table with alternating row colors</br>
+    <h2>Project list as a table with alternating row colors</h2>
     To be implemented
   </div>
 <?php
-include('footer.inc');
+include 'backlink.inc';
+include 'footer.inc';
 ?>

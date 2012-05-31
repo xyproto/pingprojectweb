@@ -38,6 +38,6 @@ include("logosearchmenu.inc");
   </div>
 
 <?php
-include("backtohome.inc");
+include("backlink.inc");
 include("footer.inc");
 ?>

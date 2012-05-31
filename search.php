@@ -4,9 +4,10 @@ include('body.inc');
 include("logosearchmenu.inc");
 ?>
   <div id="content">
-    Search results</br>
+    <h2>Search results</h2>
     To be implemented
   </div>
 <?php
-include('footer.inc');
+include 'backlink.inc';
+include 'footer.inc';
 ?>

@@ -82,10 +82,10 @@ function scandirSorted2($path) {
     }
     $filename = "/tmp/".$gitname."/".$indirname."/".$f;
     if (is_dir($filename)) {
-      echo "<a style=\"text-decoration: none; color:#aaaaff;\" href=\"/view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\"><img src=\"img/buuf_dir.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right: 8px;\">$f</a></br>";
+      echo "<a style=\"text-decoration: none; color:#aaaaff;\" href=\"view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\"><img src=\"img/buuf_dir.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right: 8px;\">$f</a></br>";
     } else {
       $filename = str_replace("/./", "/", $filename);
-      echo "<a style=\"text-decoration: none; color:#aaffaa\" href=\"/viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\"><img src=\"img/buuf_file.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right:8px;\">$f</a>";
+      echo "<a style=\"text-decoration: none; color:#aaffaa\" href=\"viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\"><img src=\"img/buuf_file.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right:8px;\">$f</a>";
       echo "</br>";
       $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an, %ci%n\"".$filename);
 
@@ -107,6 +107,6 @@ function scandirSorted2($path) {
   </div>
 
 <?php
-include 'backtohome.inc';
+include 'backlink.inc';
 include 'footer.inc';
 ?>
