@@ -76,7 +76,7 @@ include("logosearchmenu.inc");
 
   # Output the data as tables
 
-	$oddeven = "odd";
+	$oddeven = "even";
 	foreach ($keys as $key) {
     $f = $key;
 		$last_modified = $dates[$key];
