@@ -40,6 +40,7 @@ function endsWith($haystack,$needle,$case=true)
   # check out the project and list the files
   $p = "/srv/git/".$gitname;
   shell_exec("git clone ".$p." /tmp/".$gitname);
+  shell_exec("cd /tmp/".$gitname."; git reset --hard HEAD; git pull");
   if (endsWith($filename_full, ".png") || endsWith($filename_full, ".gif") ||endsWith($filename_full, ".jpg")) {
     echo "<img src=\"/viewimage.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$filename."\"></br>";
   } else {

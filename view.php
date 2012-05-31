@@ -73,8 +73,8 @@ function scandirSorted2($path) {
 
   # check out the project and list the files
   $p = "/srv/git/".$gitname;
-  #echo "path: ".$p."</br>";
   shell_exec("git clone ".$p." /tmp/".$gitname);
+  shell_exec("cd /tmp/".$gitname."; git reset --hard HEAD; git pull");
   $files = scandirSorted2("/tmp/".$gitname."/".$indirname);
   if (empty($files)) {
       echo "<h1>EMPTY</h1>";

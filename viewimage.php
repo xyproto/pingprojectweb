@@ -32,6 +32,7 @@ function endsWith($haystack,$needle,$case=true)
   # check out the project and output the image
   $p = "/srv/git/".$gitname;
   shell_exec("git clone ".$p." /tmp/".$gitname);
+  shell_exec("cd /tmp/".$gitname."; git reset --hard HEAD; git pull");
 
   $fp = fopen($filename_full, 'rb');
 

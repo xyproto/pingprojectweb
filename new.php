@@ -17,7 +17,6 @@ include 'logosearchmenu.inc';
   <p>
   <?php
     $p = "/srv/git/".$projectname.".git";
-    #echo "path: ".$p."</br>";
     shell_exec("mkdir ".$p);
     shell_exec("chmod 755 ".$p);
     shell_exec("cd ".$p."; git --bare init --shared")."</br>";
