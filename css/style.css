@@ -79,6 +79,18 @@ a {
   background: rgba(0, 0, 0, .5);
 }
 
+#drawbg {
+  border-radius: 0.9em;
+  -webkit-border-radius: 0.9em;
+  -moz-border-radius: 0.9em;
+  padding: 1em;
+  margin-left: 3em;
+  margin-right: 12em;
+  background: white;
+}
+
+
+
 table {
 	border-style: solid;
 	border-width: 2px;

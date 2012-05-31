@@ -1,7 +1,7 @@
 <?php
-include('header.inc');
-include('body.inc');
-include("logosearchmenu.inc");
+include 'header.inc';
+include 'body.inc';
+include 'logosearchmenu.inc';
 
   $sort = trim(escapeshellcmd(strip_tags($_GET["sort"])));
   if (empty($sort)) {

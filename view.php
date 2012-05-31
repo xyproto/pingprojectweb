@@ -1,7 +1,7 @@
 <?php
   include 'header.inc';
   include 'body.inc';
-  include("logosearchmenu.inc");
+  include 'logosearchmenu.inc';
 
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {

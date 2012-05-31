@@ -1,7 +1,7 @@
 <?php
-include('header.inc');
-include('body.inc');
-include("logosearchmenu.inc");
+include 'header.inc';
+include 'body.inc';
+include 'logosearchmenu.inc';
 ?>
   <script language="javascript">
     document.getElementById("new").setAttribute("class", "current");
