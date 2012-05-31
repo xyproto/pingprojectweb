@@ -47,7 +47,7 @@ include 'logosearchmenu.inc';
 		# Append $f to the array $names
     array_push($names, $f);
 		# Make $f point to $last_modified in $dates[]
-    $last_modified = shell_exec("stat /srv/git/".$f." --format=%y | cut -d. -f1");
+    $last_modified = shell_exec("stat /srv/git/".$f." --format=%z | cut -d. -f1");
     $dates[$f] = $last_modified;
 		# Make $f point to $du_size in $sizes[]
     $du_size = shell_exec("du -bs /srv/git/".$f." | cut -d/ -f1");
