@@ -25,6 +25,7 @@ include("logosearchmenu.inc");
   </script>
   <div id="content">
     <h2>Project list</h2>
+    <div id="indent">
     <table id=table>
       <tr>
 			<th><a href="list.php?sort=name&descending=<?php echo $next_descending;?>">Repo name</a></th>
@@ -102,6 +103,7 @@ include("logosearchmenu.inc");
 ?>
     <tr id=endrow><td id=endrow></td></tr>
     </table>
+    </div>
   </div>
 <?php
 include 'backlink.inc';
