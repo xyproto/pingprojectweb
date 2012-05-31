@@ -27,7 +27,7 @@
       zwibbler.saveToTemporaryFile(
 	  "png",
 	  function(url) {
-	      document.location.href = "saveimage.php?url=" + encodeURIComponent(url);
+	      document.location.href = "saveimage.php?gitname=<?php echo $gitname; ?>&url=" + encodeURIComponent(url);
       	  });
   }
   </script>

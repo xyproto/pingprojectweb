@@ -106,6 +106,8 @@ function scandirSorted2($path) {
     echo "</br>";
   }
 ?>
+  <h2>Cover art</h2>
+  <button id=indent onClick='document.location.href="draw.php?gitname=<?php echo $gitname; ?>";'>Draw cover art</button>
   </p>
   </div>
 

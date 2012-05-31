@@ -3,45 +3,34 @@ include 'header.inc';
 include 'body.inc';
 include 'logosearchmenu.inc';
 
-$q = trim(escapeshellcmd(strip_tags($_GET["q"])));
-if (empty($q)) {
-    $q = "";
+$url = urldecode($_GET["url"]);
+if (empty($url)) {
+    die("error: missing url");
 }
+$gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
+if (empty($gitname)) {
+    die("error: missing git name");
+}
+
 
 ?>
   <div id="content">
-    <h2>Search results</h2>
+    <h2>Cover art complete</h2>
 <?php
-  if ($q == "") {
-    echo "<h1>NONE</h1>";
-  } else {
-      echo "<div id=indent>";
-      echo "<table id=table>";
-      echo "<tr><th>Name</th></tr>";
-      $files = explode("\n", shell_exec("cd /srv/git; ls -rtd *.git"));
-      if (empty($files)) {
-	  echo "<h1>NONE</h1>";
-      }
-      $oddeven = "even";
-      foreach ($files as $f) {
-	  if (empty($f)) {
-	      continue;
-	  }
-	  if (false !== strpos($f, $q)) {
-	      if ($oddeven == "odd") {
-		  $oddeven = "even";
-	      } else {
-		  $oddeven = "odd";
-	      }
-	     echo "<tr><td id=".$oddeven."><a id=blacklink href=\"view.php?gitname=".$f."\">".$f."</a></td></tr>";
-	  }
-      }
-  }
+   # This worked:
+   $filename = "/srv/git/".$gitname."/cover.png";
+   shell_exec("wget -O ".$filename." ".$url);
+   # This didn't work:
+   #$contents = file_get_contents($url);
+   #echo $filename."</br>";
+   #$fh = fopen($filename, 'w');
+   #fwrite($fh, $contents);
+   #fclose($fh);
 ?>
-    <tr id=endrow><td id=endrow></td></tr>
-    </table>
-    </div>
+    <img src="<?php echo $url; ?>"></br>
+    <button onClick='document.location.href="index.php";'>See it live!</button>
   </div>
+
 <?php
 include 'backlink.inc';
 include 'footer.inc';

@@ -20,10 +20,9 @@ include 'logosearchmenu.inc';
       continue;
     }
     $last_modified = shell_exec("stat /srv/git/".$f." --format=%y | cut -d\" \" -f1");
-    echo "<img class=\"item\" href=\"view.php?gitname=".$f."\" src=\"logo.php?text=".$f."&text2=".$last_modified."\" title=\"".$f."\"/>";
+    echo "<img class=\"item\" href=\"view.php?gitname=".$f."\" src=\"logo.php?gitname=".$f."&text=".$f."&text2=".$last_modified."\" title=\"".$f."\"/>";
   }
 ?>
-
     </div>
     <div class="globalCaption"></div>
     <div class="scrollbar"><div class="slider"><div class="position"></div></div></div>
