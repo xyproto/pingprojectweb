@@ -43,28 +43,38 @@ a {
 }
 
 #filelist {
-    font-family: courier;
-    font-size: 1.2em;
+  font-family: courier;
+  font-size: 1.2em;
 }
 
 #filename {
-    color: #aaffaa;
+  color: #aaffaa;
 }
 
 #dirname {
-    color: #aaaaff;
+  color: #aaaaff;
 }
 
 #icon {
-    height: 64px;
-    width: auto;
-    vertical-align: middle;
-    margin-right: 8px;
+  height: 64px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
 #filedesc {
-    color: #808080;
-    margin-left: 3.8em;
-    top: -1.2em;
-    position: relative;
+  color: #808080;
+  margin-left: 3.8em;
+  top: -1.2em;
+  position: relative;
+}
+
+#viewfilebg {
+  border-radius: 0.9em;
+  -webkit-border-radius: 0.9em;
+  -moz-border-radius: 0.9em;
+  padding: 1em;
+  margin-left: 3em;
+  margin-right: 5em;
+  background: rgba(0, 0, 0, .5);
 }

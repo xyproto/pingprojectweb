@@ -21,7 +21,7 @@
   $viewfilename_full = str_replace("/./", "/", $gitname."/".$indirname."/".$filename);
 ?>
   <h1>Viewing File: <font id="orange"><?php echo $viewfilename_full; ?></font></h1>
-  <p style="margin-left: 2em; font-family: courier;">
+  <p>
 <?php
 
 # thanks stackoverflow
@@ -41,12 +41,10 @@ function endsWith($haystack,$needle,$case=true)
   $p = "/srv/git/".$gitname;
   shell_exec("git clone ".$p." /tmp/".$gitname);
   if (endsWith($filename_full, ".png") || endsWith($filename_full, ".gif") ||endsWith($filename_full, ".jpg")) {
-    # TODO
     echo "<img src=\"/viewimage.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$filename."\"></br>";
   } else {
-    echo "<div style=\"border-radius: 15px; padding:1em; margin-left:3em; margin-right:5em; opacity:1.0; background:black;\">";
+    echo "<div id=viewfilebg>";
     echo "<pre class=\"prettyprint\">";
-    #echo trim(strip_tags(shell_exec("cat ".$filename_full)))."</br>";
     $ff = fopen($filename_full, "r");
     $output = fread($ff, filesize($filename_full));
     $output = str_replace("<", "&lt;", $output);
