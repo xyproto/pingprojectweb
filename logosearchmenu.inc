@@ -1,9 +1,9 @@
-  <h1>PiNG <font style="color: orange;">Projects</font></h1>
-
-  <form style="position:relative; top: -3.2em; text-align: right;">
-    <input type="text" style="position:relative; width: 15em;" value="">
-    <input type="button" style="width: auto;" value="Search" onclick="location.href='search.php'">
+  <h1><a href="index.php">PiNG <font style="color: orange;">Projects</font></a></h1>
+  <div style="width: 25%; margin-left: 75%; position:relative; top: -3.2em; text-align: right;">
+  <form id="search" method="get" action="search.php">
+    <input name="q" size=22 /><input style="margin-left: 0.4em;" type=submit value="Search"/>
   </form>
+  </div>
 
   <div class="menu" style="margin-left: -1em; margin-top: 1.5em; padding-top: 1em; padding-left: 1em; padding-bottom: 0.5em; position:relative; top: -3em;">
       <ul id="nav">

@@ -1,8 +1,7 @@
 <?php
   include 'header.inc';
   include 'prettybody.inc';
-?>
-<?php
+
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {
     die("error: missing git name");
@@ -21,7 +20,7 @@
   $filename_full = str_replace("/./", "/", "/tmp/".$gitname."/".$indirname."/".$filename);
   $viewfilename_full = str_replace("/./", "/", $gitname."/".$indirname."/".$filename);
 ?>
-  <h1>Viewing File: <font style="color: orange;"><?php echo $viewfilename_full; ?></font></h1>
+  <h1>Viewing File: <font id="orange"><?php echo $viewfilename_full; ?></font></h1>
   <p style="margin-left: 2em; font-family: courier;">
 <?php
 

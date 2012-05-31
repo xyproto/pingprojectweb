@@ -20,7 +20,7 @@ p {
 
 form button {
   position: relative;
-  left: 15em;
+  left: 20em;
 }
 
 #orange {
@@ -39,4 +39,32 @@ form button {
 
 a {
   color: white;
+  text-decoration: none;
+}
+
+#filelist {
+    font-family: courier;
+    font-size: 1.2em;
+}
+
+#filename {
+    color: #aaffaa;
+}
+
+#dirname {
+    color: #aaaaff;
+}
+
+#icon {
+    height: 64px;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+#filedesc {
+    color: #808080;
+    margin-left: 3.8em;
+    top: -1.2em;
+    position: relative;
 }

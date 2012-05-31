@@ -27,7 +27,7 @@
   </font>
   <hr color="#303030">
   <h3>Files</h3>
-  <p style="margin-left: 3em; font-family: courier; font-size: 1.2em;">
+  <p id="filelist">
 <?php
 
 # Thank you 
@@ -82,16 +82,16 @@ function scandirSorted2($path) {
     }
     $filename = "/tmp/".$gitname."/".$indirname."/".$f;
     if (is_dir($filename)) {
-      echo "<a style=\"text-decoration: none; color:#aaaaff;\" href=\"view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\"><img src=\"img/buuf_dir.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right: 8px;\">$f</a></br>";
+      echo "<a id=dirname href=\"view.php?gitname=".$gitname."&indirname=".$indirname."/".$f."\"><img src=\"img/buuf_dir.png\" id=icon>$f</a></br>";
     } else {
       $filename = str_replace("/./", "/", $filename);
-      echo "<a style=\"text-decoration: none; color:#aaffaa\" href=\"viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\"><img src=\"img/buuf_file.png\" style=\"height:64px; width:auto; vertical-align:middle; margin-right:8px;\">$f</a>";
+      echo "<a id=filename href=\"viewfile.php?gitname=".$gitname."&indirname=".$indirname."&filename=".$f."\"><img src=\"img/buuf_file.png\" id=icon>$f</a>";
       echo "</br>";
       $output = shell_exec("cd /tmp/".$gitname."/".$indirname."; git log -n1 --date=iso --pretty=format:\"%an, %ci%n\"".$filename);
 
       $fields = explode(" ", fixEncoding($output), -1);
       $info = implode(" ", $fields);
-      echo "<font style=\"color: gray; margin-left: 4em;\">";
+      echo "<font id=filedesc>";
       if (empty($info)) {
         echo "no log info"."</br>";
       } else {
