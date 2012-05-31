@@ -1,6 +1,7 @@
-<?php include("header.inc"); ?>
-<?php include("prettybody.inc"); ?>
 <?php
+  include 'header.inc';
+  include 'prettybody.inc';
+
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {
     die("error: missing git name");
@@ -34,14 +35,8 @@ function endsWith($haystack,$needle,$case=true)
   return strripos($haystack, $needle, 0) === $expectedPosition;
 }
 
-  # cleanup if there's too little space on /tmp
-  $line = explode("\n", shell_exec("df /tmp"))[1];
-  $fields = explode(" ", $line);
-  $sizefree = intval($fields[17]);
-  if ($sizefree < 50000) {
-    # echo "Less than 50MB free in /tmp. Clearing /tmp.</br>";
-    shell_exec("rm -rf /tmp");
-  }
+  include 'tmpcleanup.inc';
+
   # check out the project and list the files
   $p = "/srv/git/".$gitname;
   shell_exec("git clone ".$p." /tmp/".$gitname);

@@ -1,6 +1,8 @@
-<?php include("header.inc"); ?>
-<?php include("body.inc"); ?>
 <?php
+  include 'header.inc';
+  include 'body.inc';
+  include("logosearchmenu.inc");
+
   $gitname = trim(escapeshellcmd(strip_tags($_GET["gitname"])));
   if (empty($gitname)) {
     die("error: missing git name");
@@ -12,17 +14,19 @@
   // Prevent .. in "indirname"
   $indirname = str_replace("..", "OST", $indirname);
 ?>
-  <h1>Viewing project: <font style="color: orange;"><?php echo $gitname; ?></font></h1>
-  </br>
-  <h2>To checkout</h2>
-  <p style="margin-left: 3em; font-family: courier;">
+  <div id="content">
+  <h3>Viewing project: <font id="orange"><?php echo $gitname; ?></font></h3>
+  <hr color="#303030">
+  <h3>To checkout</h3>
+  <font id="code">
 <?php
   $hostname = trim(shell_exec("hostname"));
   $dirname = explode(".", $gitname, -1)[0];
   echo "git clone ssh://\$USER@".$hostname."//srv/git/".$gitname." ".$dirname."</br>";
 ?>
-  </p>
-  <h2>Files</h2>
+  </font>
+  <hr color="#303030">
+  <h3>Files</h3>
   <p style="margin-left: 3em; font-family: courier; font-size: 1.2em;">
 <?php
 
@@ -65,14 +69,8 @@ function scandirSorted2($path) {
   return $dir;
 }
 
-  # cleanup if there's too little space on /tmp
-  $line = explode("\n", shell_exec("df /tmp"))[1];
-  $fields = explode(" ", $line);
-  $sizefree = intval($fields[17]);
-  if ($sizefree < 50000) {
-    # echo "Less than 50MB free in /tmp. Clearing /tmp.</br>";
-    shell_exec("rm -rf /tmp");
-  }
+  include 'tmpcleanup.inc';
+
   # check out the project and list the files
   $p = "/srv/git/".$gitname;
   #echo "path: ".$p."</br>";
@@ -106,6 +104,9 @@ function scandirSorted2($path) {
   }
 ?>
   </p>
-  <hr color="#303030">
-  <a style="text-decoration:none; color:#d0d0d0;" href="/"><img src="img/buuf_back.png" style="height:32px; width: auto; vertical-align:middle; margin-right:8px;"><font style="color: #dddda0; font-family: courier; font-size: 1em;">Go back</font></a>
-<?php include("footer.inc"); ?>
+  </div>
+
+<?php
+include 'backtohome.inc';
+include 'footer.inc';
+?>
