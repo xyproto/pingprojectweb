@@ -76,6 +76,9 @@ function scandirSorted2($path) {
   #echo "path: ".$p."</br>";
   shell_exec("git clone ".$p." /tmp/".$gitname);
   $files = scandirSorted2("/tmp/".$gitname."/".$indirname);
+  if (empty($files)) {
+      echo "<h1>EMPTY</h1>";
+  }
   foreach ($files as $f) {
     if (empty($f)) {
       continue;
